@@ -1,20 +1,17 @@
 # Develop branch'ine bir pull request merge'lendiginde, develop branchini master brancine merge'ler
-name: Merge to master
+name: Merge to master when pull request
 
 on: 
   pull_request:
     branches: [develop]
     types: [closed]
-  push: 
-    branches: 
-      - develop
 
 permissions: 
   contents: write
 
 jobs:
   merge-master-back-to-dev:
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
